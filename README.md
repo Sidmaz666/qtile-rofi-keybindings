@@ -8,6 +8,7 @@
 		-h,--help 	Help Menu [USAGE]
 		Example:
 	 			./qtile_kb_rofi.sh -c 	Load KB From Deafault Qtile config file.
-	             		./qtile_kb_rofi -c ~/.config/qtile/settings/keys.py 	Load Custom KB
+	             		./qtile_kb_rofi -c ~/.config/qtile/settings/keys.py 	Load Custom KB [MAX 2]
+				./qtile_kb_rofi -c ~/.config/qtile/settings/keys.py ~/.config/qtile/settings/groups.py
 				./qtile_kb_rofi -h 	For Help
 	
