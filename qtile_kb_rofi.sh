@@ -12,7 +12,7 @@ Example:
 ./qtile_kb_rofi.sh -c 	Load KB From Deafault Qtile config file.
 
 ./qtile_kb_rofi -c ~/.config/qtile/settings/keys.py 	Load Custom KB
-
+./qtile_kb_rofi -c ~/.config/tile/setings/keys.py ~/scripts/extrakeys.py 
 ./qtile_kb_rofi -h 	For Help
 EOF
 }
@@ -43,6 +43,13 @@ $source | grep 'Key' | tail -n +2| \
        	-e 's/:/:\t/g' | tr -d \' \
        	| sed -e 's/:\t/  /g' \
 	| sed 's/[a-z]/\U&/g' \
+	| sed -e 's/KEYS.APPEND//g' \
+	-e 's/.DROP/   DROP/g' \
+	-e 's/GROUP/   GROUP/g' \
+	-e 's/TOGGLE/TOGGLE   /g ' \
+	-e 's/GROUP/GROUP /g' \
+	-e 's/\#//g' \
+	-e 's/.TO / TO /g' \
        	| rofi -dmenu -theme gruvbox-dark -p ""
 }
 [[ $# -eq 0 ]] &&
@@ -53,7 +60,7 @@ $source | grep 'Key' | tail -n +2| \
 			;;
 		-c |--config )
 	if [[ ! -z "$2" ]]; then
-	       	 source="cat $2" && call && exit 
+	       	 source="cat $2 $3" && call && exit 
 	 else
 		souce="cat /home/.config/qtile/config.py" &&
 	       	call && exit;
