@@ -12,10 +12,11 @@ Example:
 ./qtile_kb_rofi.sh -c 	Load KB From Deafault Qtile config file.
 
 ./qtile_kb_rofi -c ~/.config/qtile/settings/keys.py 	Load Custom KB
-./qtile_kb_rofi -c ~/.config/tile/setings/keys.py ~/scripts/extrakeys.py 
+
 ./qtile_kb_rofi -h 	For Help
 EOF
 }
+mod="$(echo "ModKey  mod4:Super:WindowsKey")"
 call(){
 $source | grep 'Key' | tail -n +2| \
        	sed -e 's/^[ \t]*//' | \
@@ -50,7 +51,11 @@ $source | grep 'Key' | tail -n +2| \
 	-e 's/GROUP/GROUP /g' \
 	-e 's/\#//g' \
 	-e 's/.TO / TO /g' \
-       	| rofi -dmenu -theme gruvbox-dark -p ""
+	-e 's/[A-Z]/\L&/g' \
+	-e 's/\b\(.\)/\u\1/g' \
+	-e 's/Mod/Super/g' \
+	-e 's/window/ Window /g' \
+       	| rofi -dmenu -theme gruvbox-dark -p " $mod"
 }
 [[ $# -eq 0 ]] &&
 	usage && exit ||
@@ -62,7 +67,7 @@ $source | grep 'Key' | tail -n +2| \
 	if [[ ! -z "$2" ]]; then
 	       	 source="cat $2 $3" && call && exit 
 	 else
-		souce="cat /home/.config/qtile/config.py" &&
+		souce="cat /home/$USER/.config/qtile/config.py" &&
 	       	call && exit;
 	fi
 				;;
