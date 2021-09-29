@@ -1,6 +1,6 @@
 # Qtile-rofi-keybindings
 ### Show Qtile Keybindings in Rofi Run Launcher
-![preview](https://raw.githubusercontent.com/Sidmaz666/qtile-rofi-keybindings/main/qtile_keybinding_rofi_preview.gif)
+![preview](https://raw.githubusercontent.com/Sidmaz666/qtile-rofi-keybindings/main/preview.gif)
 # 
 	Qtile Keybinding Rofi Script [USAGE]
 	--config,-c 	qtile Keybinding config file
