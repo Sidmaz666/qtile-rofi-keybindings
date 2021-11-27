@@ -67,7 +67,7 @@ $source | grep 'Key' | tail -n +2| \
 	if [[ ! -z "$2" ]]; then
 	       	 source="cat $2 $3" && call && exit 
 	 else
-		souce="cat /home/$USER/.config/qtile/config.py" &&
+		souce="cat $HOME/.config/qtile/config.py" &&
 	       	call && exit;
 	fi
 				;;
