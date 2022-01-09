@@ -13,11 +13,15 @@ Qtile Keybinding Rofi Script [USAGE]
 -h,--help 	Help Menu [USAGE]
 Example:
 
-./qtile_kb_rofi.sh -c 	Load KB From Deafault Qtile config file.
+qkb                   Load KB From Deafault Qtile config file.
+qtile_kb_rofi -c 
+qkb -c
 
-./qtile_kb_rofi -c ~/.config/qtile/settings/keys.py 	Load Custom KB
+qtile_kb_rofi -c ~/.config/qtile/settings/keys.py 	Load Custom KB
+qkb --config ~/mydotfiles/qtile/kb.py
 
-./qtile_kb_rofi -h 	For Help
+qtile_kb_rofi -h 	For Help
+qkb --help
 EOF
 }
 call(){
