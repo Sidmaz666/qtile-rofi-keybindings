@@ -1,4 +1,8 @@
 #!/bin/bash
+# Mention Your choice of Rofi Theme
+ROFI_THEME="gruvbox-dark"
+#Mention Your MOD KEY
+MOD_KEY="  mod4:Super:WindowsKey"
 usage(){
 while IFS= read line; do
 	printf "%s\n" "$line"
@@ -16,9 +20,8 @@ Example:
 ./qtile_kb_rofi -h 	For Help
 EOF
 }
-mod="$(echo "ModKey  mod4:Super:WindowsKey")"
 call(){
-$source | grep 'Key' | tail -n +2| \
+cat $source | grep 'Key' | tail -n +2| \
        	sed -e 's/^[ \t]*//' | \
        	sed -e 's/",/\t: /g' \
        	-e 's/"/ + /g' \
@@ -55,24 +58,22 @@ $source | grep 'Key' | tail -n +2| \
 	-e 's/\b\(.\)/\u\1/g' \
 	-e 's/Mod/Super/g' \
 	-e 's/window/ Window /g' \
-       	| rofi -dmenu -theme gruvbox-dark -p " $mod"
+       	| rofi -dmenu -theme $ROFI_THEME -i -fuzzy -p "$MOD_KEY"
 }
-[[ $# -eq 0 ]] &&
-	usage && exit ||
 	case "$1" in
 		--help | -h )
 			usage && exit;
 			;;
 		-c |--config )
-	if [[ ! -z "$2" ]]; then
-	       	 source="cat $2 $3" && call && exit 
+	if [ -z "$2" ]; then
+	 source="$HOME/.config/qtile/config.py" && call && exit 
 	 else
-		souce="cat $HOME/.config/qtile/config.py" &&
+		souce="$2 $3" &&
 	       	call && exit;
 	fi
 				;;
 			* )
-				usage && exit;
+	 source="$HOME/.config/qtile/config.py" && call && exit 
 				;;
 		esac
 		shift
